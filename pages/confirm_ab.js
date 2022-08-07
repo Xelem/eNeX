@@ -3,39 +3,39 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { TransactionContext } from "../contexts/TransactionContext";
 
-export const getStaticProps = async () => {
-  var data = JSON.stringify({
-    wallet_alias: "@eonuoha.01",
-    user_type: "user",
-    channel_code: "APISNG",
-  });
+// export const getStaticProps = async () => {
+//   var data = JSON.stringify({
+//     wallet_alias: "@eonuoha.01",
+//     user_type: "user",
+//     channel_code: "APISNG",
+//   });
 
-  var config = {
-    method: "post",
-    url: "https://rgw.k8s.apis.ng/centric-platforms/uat/enaira-user/GetUserDetailsByWalletAlias",
-    headers: {
-      ClientId: "75354d5ad2981d9b27771b7470019997",
-      "Content-Type": "application/json",
-    },
-    data: data,
-  };
+//   var config = {
+//     method: "post",
+//     url: "https://rgw.k8s.apis.ng/centric-platforms/uat/enaira-user/GetUserDetailsByWalletAlias",
+//     headers: {
+//       ClientId: "75354d5ad2981d9b27771b7470019997",
+//       "Content-Type": "application/json",
+//     },
+//     data: data,
+//   };
 
-  axios(config)
-    .then(function (response) {
-      const data = JSON.stringify(response.data);
-      const user = data.response_data;
-      console.log(user);
-    })
-    .catch(function (error) {
-      console.log(error);
-    });
+//   axios(config)
+//     .then(function (response) {
+//       const data = JSON.stringify(response.data);
+//       const user = data.response_data;
+//       console.log(user);
+//     })
+//     .catch(function (error) {
+//       console.log(error);
+//     });
 
-  return {
-    props: { user },
-  };
-};
+//   return {
+//     props: { user },
+//   };
+// };
 
-const Confirm = ({ user }) => {
+const Confirm = () => {
   const router = useRouter();
   const { bank, amount, rAccNo, note, walletAlias, rCountry } =
     useContext(TransactionContext);
@@ -60,17 +60,21 @@ const Confirm = ({ user }) => {
                 <label htmlFor="name" className="form-label fw-bold">
                   From
                 </label>
-                <p className="border p-2 bg-light">Bola Mustapha</p>
+                <p className="border p-2 bg-light">EMMANUEL ONUOHA EZECHI</p>
                 <label htmlFor="name" className="form-label">
-                  {user.wallet_info.wallet_alias}
+                  e-Naira Wallet Alias
                 </label>
                 <p className="border p-2 bg-light">{walletAlias}</p>
                 <label htmlFor="name" className="form-label">
                   e-Naira Wallet Address
                 </label>
                 <p className="border p-2 bg-light">
-                  {user.wallet_info.wallet_address}
+                  01G5P2NYVBPBK362FJK6X682CS
                 </p>
+                <label htmlFor="name" className="form-label">
+                  e-Naira Wallet Balance
+                </label>
+                <p className="border p-2 bg-light">40,000</p>
 
                 <label htmlFor="name" className="form-label fw-bold">
                   To
@@ -91,11 +95,15 @@ const Confirm = ({ user }) => {
                 <label htmlFor="name" className="form-label">
                   Amount
                 </label>
-                <p className="border p-2 bg-light">{amount}</p>
+                <p className="border p-2 bg-light">₦{amount}</p>
+                <label htmlFor="name" className="form-label">
+                  Equivalent Amount
+                </label>
+                <p className="border p-2 bg-light">GH₵ 400</p>
                 <label htmlFor="name" className="form-label">
                   Transaction Fee
                 </label>
-                <p className="border p-2 bg-light">#10.00</p>
+                <p className="border p-2 bg-light">₦10.00</p>
                 <label htmlFor="name" className="form-label">
                   Note
                 </label>
