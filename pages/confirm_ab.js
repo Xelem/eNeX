@@ -3,27 +3,39 @@ import { useContext, useEffect } from "react";
 import axios from "axios";
 import { TransactionContext } from "../contexts/TransactionContext";
 
-// export const getStaticProps = async () => {
-//   const user = await axios({
-//     method: "post",
-//     url: "https://rgw.k8s.apis.ng/centric-platforms/uat/enaira-user/GetUserDetailsByWalletAlias",
-//     headers: {
-//       ClientId: "75354d5ad2981d9b27771b7470019997",
-//     },
-//     data: {
-//       wallet_alias: "@eonuoha.01",
-//       user_type: "user",
-//       channel_code: "APISNG",
-//     },
-//   });
-//   console.log(user);
+export const getStaticProps = async () => {
+  var data = JSON.stringify({
+    wallet_alias: "@eonuoha.01",
+    user_type: "user",
+    channel_code: "APISNG",
+  });
 
-//   return {
-//     props: { hits, nbPages },
-//   };
-// };
+  var config = {
+    method: "post",
+    url: "https://rgw.k8s.apis.ng/centric-platforms/uat/enaira-user/GetUserDetailsByWalletAlias",
+    headers: {
+      ClientId: "75354d5ad2981d9b27771b7470019997",
+      "Content-Type": "application/json",
+    },
+    data: data,
+  };
 
-const Confirm = () => {
+  axios(config)
+    .then(function (response) {
+      const data = JSON.stringify(response.data);
+      const user = data.response_data;
+      console.log(user);
+    })
+    .catch(function (error) {
+      console.log(error);
+    });
+
+  return {
+    props: { user },
+  };
+};
+
+const Confirm = ({ user }) => {
   const router = useRouter();
   const { bank, amount, rAccNo, note, walletAlias, rCountry } =
     useContext(TransactionContext);
@@ -50,13 +62,15 @@ const Confirm = () => {
                 </label>
                 <p className="border p-2 bg-light">Bola Mustapha</p>
                 <label htmlFor="name" className="form-label">
-                  e-Naira Wallet Alias
+                  {user.wallet_info.wallet_alias}
                 </label>
                 <p className="border p-2 bg-light">{walletAlias}</p>
                 <label htmlFor="name" className="form-label">
-                  e-Naira Wallet ID
+                  e-Naira Wallet Address
                 </label>
-                <p className="border p-2 bg-light">{walletAlias}</p>
+                <p className="border p-2 bg-light">
+                  {user.wallet_info.wallet_address}
+                </p>
 
                 <label htmlFor="name" className="form-label fw-bold">
                   To
