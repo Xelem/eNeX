@@ -1,14 +1,15 @@
-import Link from "next/link";
 import { useRouter } from "next/router";
+import Link from "next/link";
 
-const signUp = () => {
-  const router = useRouter();
+const SignUp = () => {
+  const router = useRouter;
   const submitHandler = (e) => {
     e.preventDefault();
     setTimeout(() => {
       router.push("/transfer");
     }, 1000);
   };
+
   return (
     <section id="signup">
       <div className="container py-4 bg-light">
@@ -71,4 +72,4 @@ const signUp = () => {
   );
 };
 
-export default signUp;
+export default SignUp;
