@@ -19,7 +19,7 @@ const BeneficiaryNG = () => {
         <div className="row justify-content-center my-5">
           <div className="col-lg-10 my-5 bg-white p-5">
             <form onSubmit={submitHandler}>
-              <h2 className="py-3">Creditor&apos;s Details</h2>
+              <h2 className="py-3">Sender&apos;s Details</h2>
               <label htmlFor="name" className="form-label">
                 e-Naira Wallet alias
               </label>

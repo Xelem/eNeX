@@ -63,7 +63,7 @@ const CreditorNG = () => {
               />
 
               <label htmlFor="password" className="form-label">
-                Add a Note
+                Description
               </label>
               <input
                 type="text"

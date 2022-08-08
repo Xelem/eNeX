@@ -105,7 +105,7 @@ const Confirm = () => {
                 </label>
                 <p className="border p-2 bg-light">₦10.00</p>
                 <label htmlFor="name" className="form-label">
-                  Note
+                  Description
                 </label>
                 <p className="border p-2 bg-light">{note}</p>
                 <label htmlFor="name" className="form-label">
